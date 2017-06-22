@@ -41,7 +41,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NFCReaderUsageDescription</key>
-    <string>We are going to use your NFC!</string>
+	<key>NFCReaderUsageDescription</key>
+	<string>your NFC tag!</string>
 </dict>
 </plist>
