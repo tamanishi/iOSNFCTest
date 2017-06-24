@@ -41,11 +41,20 @@ class ViewController: UIViewController, NFCNDEFReaderSessionDelegate {
     func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
         var payloadString: String = String()
         for message in messages {
-            for payload in message.records {
-                payloadString += String(describing: payload.payload)
+            for record in message.records {
+                if let payload = String.init(data: record.payload, encoding: .utf8) {
+                    payloadString += payload
+                    payloadString += "\n"
+                }
             }
         }
-        payloadLabel.text = payloadString
+        
+        // メインスレッドでUIに反映
+        DispatchQueue.global(qos: .default).async {
+            DispatchQueue.main.async {
+                self.payloadLabel.text = payloadString
+            }
+        }
     }
     
 }
